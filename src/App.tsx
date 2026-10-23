@@ -204,9 +204,15 @@ export default function App() {
             >
               <div className="w-full h-full rounded-full overflow-hidden bg-[#060e20] flex items-center justify-center relative">
                 <img
-                  alt="Juvena Sticker Oficial"
+                  alt="Juvenal Sticker Oficial"
                   className="w-full h-full object-cover scale-105 transform group-hover:scale-110 transition-transform duration-300"
-                  src="/public/assets/aistudio/Image_4_7e90b7cd.png"
+                  src="/assets/aistudio/Image_4_7e90b7cd.png"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('/public/')) {
+                      target.src = '/public/assets/aistudio/Image_4_7e90b7cd.png';
+                    }
+                  }}
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors flex items-center justify-center">
                   <span className="material-symbols-outlined text-white text-3xl opacity-0 group-hover:opacity-90 drop-shadow transition-opacity">

@@ -78,7 +78,10 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({
     onShowToast('🎥 Link direto do vídeo copiado para a área de transferência!');
   };
 
-  const isVideo = Boolean(videoSrc || imageSrc.endsWith('.webp') || imageSrc.endsWith('.mp4'));
+  const cleanVideoSrc = videoSrc ? (videoSrc.startsWith('/public/') ? videoSrc.replace('/public/', '/') : videoSrc) : undefined;
+  const cleanImageSrc = imageSrc ? (imageSrc.startsWith('/public/') ? imageSrc.replace('/public/', '/') : imageSrc) : '';
+
+  const isVideo = Boolean(cleanVideoSrc || cleanImageSrc.endsWith('.webp') || cleanImageSrc.endsWith('.mp4'));
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/90 backdrop-blur-lg animate-in fade-in duration-200">
@@ -104,10 +107,10 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({
 
         {/* Media Frame */}
         <div className="relative bg-[#060e20] flex items-center justify-center p-2 min-h-[300px]">
-          {videoSrc ? (
+          {cleanVideoSrc ? (
             <video
               ref={videoRef}
-              src={videoSrc}
+              src={cleanVideoSrc}
               autoPlay
               loop
               muted
@@ -116,13 +119,13 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({
             />
           ) : isVideo ? (
             <img
-              src={imageSrc}
+              src={cleanImageSrc}
               alt={title}
               className="max-h-[55vh] w-full object-contain rounded-xl shadow-lg border border-white/5"
             />
           ) : (
             <img
-              src={imageSrc}
+              src={cleanImageSrc}
               alt={title}
               className="max-h-[55vh] w-auto object-contain rounded-xl shadow-lg border border-white/5"
             />

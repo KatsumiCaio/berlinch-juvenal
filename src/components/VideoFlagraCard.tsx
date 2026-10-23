@@ -110,18 +110,24 @@ export const VideoFlagraCard: React.FC<VideoFlagraCardProps> = ({
       <div className="relative w-full rounded-2xl overflow-hidden bg-[#060e20] shadow-2xl border border-white/10 group">
         <video
           ref={videoRef}
-          src="/public/assets/aistudio/flagra_sinergia.mp4"
+          src="/assets/aistudio/flagra_sinergia.mp4"
           autoPlay
           loop
           muted
           playsInline
           className="w-full h-72 sm:h-80 object-cover object-center filter contrast-105 cursor-pointer"
+          onError={(e) => {
+            const target = e.currentTarget;
+            if (!target.src.includes('/public/')) {
+              target.src = '/public/assets/aistudio/flagra_sinergia.mp4';
+            }
+          }}
           onClick={() =>
             onOpenFullscreen(
-              '/public/assets/aistudio/932bf9f6-0609-4aa8-afb2-f8bc5a503c6b_1245ac09.webp',
+              '/assets/aistudio/932bf9f6-0609-4aa8-afb2-f8bc5a503c6b_1245ac09.webp',
               'Flagra em Vídeo: O Beijo da Sinergia (#042)',
               'Alinhamento estratégico e troca profunda de experiências durante a dinâmica de quebra-gelo corporativo.',
-              '/public/assets/aistudio/flagra_sinergia.mp4'
+              '/assets/aistudio/flagra_sinergia.mp4'
             )
           }
         />
@@ -191,10 +197,10 @@ export const VideoFlagraCard: React.FC<VideoFlagraCardProps> = ({
           <button
             onClick={() =>
               onOpenFullscreen(
-                '/public/assets/aistudio/932bf9f6-0609-4aa8-afb2-f8bc5a503c6b_1245ac09.webp',
+                '/assets/aistudio/932bf9f6-0609-4aa8-afb2-f8bc5a503c6b_1245ac09.webp',
                 'Flagra em Vídeo: O Beijo da Sinergia (#042)',
                 'Alinhamento estratégico e troca profunda de experiências durante a dinâmica de quebra-gelo corporativo.',
-                '/public/assets/aistudio/flagra_sinergia.mp4'
+                '/assets/aistudio/flagra_sinergia.mp4'
               )
             }
             className="bg-[#060e20]/85 hover:bg-[#222a3d] text-white p-1.5 rounded-xl border border-white/10 backdrop-blur-md flex items-center justify-center active:scale-95 shadow"

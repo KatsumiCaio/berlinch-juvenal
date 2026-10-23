@@ -69,7 +69,7 @@ export const ProcuradoCard: React.FC<ProcuradoCardProps> = ({
         <div
           onClick={() =>
             onOpenFullscreen(
-              '/public/assets/aistudio/image_7e749432.png',
+              '/assets/aistudio/image_7e749432.png',
               'Mandado do RH: JUVENAL PROCURADO',
               'Acusado de beijar a firma inteira no treinamento, sumir às 16h da sexta e alegar quebra de silos corporativos.'
             )
@@ -77,9 +77,15 @@ export const ProcuradoCard: React.FC<ProcuradoCardProps> = ({
           className="relative max-w-[280px] w-full rounded-2xl overflow-hidden cursor-pointer shadow-xl transition-transform group-hover:scale-102"
         >
           <img
-            src="/public/assets/aistudio/image_7e749432.png"
+            src="/assets/aistudio/image_7e749432.png"
             alt="Juvenal Procurado"
             className="w-full h-auto object-contain rounded-2xl"
+            onError={(e) => {
+              const target = e.currentTarget;
+              if (!target.src.includes('/public/')) {
+                target.src = '/public/assets/aistudio/image_7e749432.png';
+              }
+            }}
           />
 
           {/* Stamp overlay */}

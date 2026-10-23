@@ -66,8 +66,8 @@ const INITIAL_DOSSIER: DossierItem = {
   time: 'Sex 18:42',
   status: 'HOMOLOGADO PELO RH',
   statusColor: 'error',
-  image: '/public/assets/aistudio/932bf9f6-0609-4aa8-afb2-f8bc5a503c6b_1245ac09.webp',
-  videoSrc: '/public/assets/aistudio/flagra_sinergia.mp4',
+  image: '/assets/aistudio/932bf9f6-0609-4aa8-afb2-f8bc5a503c6b_1245ac09.webp',
+  videoSrc: '/assets/aistudio/flagra_sinergia.mp4',
   category: 'Integração Interdepartamental',
   description: '"Alinhamento estratégico e troca profunda de experiências durante a dinâmica de quebra-gelo corporativo."',
   reactions: {
