@@ -1,0 +1,6 @@
+{
+  "name": "Juvena Awards - Hall da Fama",
+  "description": "O portal oficial de honrarias, dossiês confidenciais e métricas ultra-confiáveis do mito e lenda corporativa Juvena.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
