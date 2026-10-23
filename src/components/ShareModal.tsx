@@ -20,9 +20,9 @@ export const ShareModal: React.FC<ShareModalProps> = ({
   const appUrl = window.location.href;
 
   const templates = {
-    whatsapp: `🚨 *URGENTE NO GRUPO DA FIRMA* 🚨\n\nSaiu a premiação oficial do *JUVENA AWARDS*! 🏆\n"Eu tô muito louco Juvena!"\n\nConfira o dossiê confidencial do Beijo da Sinergia e vote nas melhores desculpas:\n${appUrl}`,
-    slack: `:trophy: *JUVENA AWARDS - Hall da Fama Oficial* :beer:\n> _"Eu tô muito louco Juvena!"_\nFlagras homologados pelo RH, gerador de desculpas e auditoria paralela disponíveis em:\n${appUrl}`,
-    teams: `📢 [ALINHAMENTO ESTRATÉGICO] Juvena Awards 2024\nReconhecimento oficial das maiores façanhas corporativas e quebra-gelo interdepartamental.\nAcesse o portal: ${appUrl}`
+    whatsapp: `🚨 *URGENTE NO GRUPO DA FIRMA* 🚨\n\nSaiu a premiação oficial do *JUVENAL AWARDS*! 🏆\n"Eu tô muito louco Juvenal!"\n\nConfira o flagra em vídeo do Beijo da Sinergia e o mandado do RH:\n${appUrl}`,
+    slack: `:trophy: *JUVENAL AWARDS - Hall da Fama Oficial* :beer:\n> _"Eu tô muito louco Juvenal!"_\nFlagras em vídeo homologados pelo RH e auditoria paralela disponíveis em:\n${appUrl}`,
+    teams: `📢 [ALINHAMENTO ESTRATÉGICO] Juvenal Awards 2024\nReconhecimento oficial das maiores façanhas corporativas e quebra-gelo interdepartamental.\nAcesse o portal: ${appUrl}`
   };
 
   const handleCopy = () => {
@@ -38,8 +38,8 @@ export const ShareModal: React.FC<ShareModalProps> = ({
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Juvena Awards - Hall da Fama',
-          text: 'Eu tô muito louco Juvena! Acesse o portal oficial da firma.',
+          title: 'Juvenal Awards - Hall da Fama',
+          text: 'Eu tô muito louco Juvenal! Acesse o portal oficial da firma.',
           url: appUrl
         });
         onShowToast('🚀 Compartilhado com sucesso!');

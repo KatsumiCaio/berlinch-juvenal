@@ -113,7 +113,7 @@ export const ProcuradoCard: React.FC<ProcuradoCardProps> = ({
           </div>
           <div className="flex items-start gap-1.5 text-[#dae2fd]">
             <span className="text-[#ec6a06] font-bold">•</span>
-            <span><strong>Art. 42:</strong> Disse em alto e bom som: <em>"Eu tô muito louco Juvena!"</em> para a diretoria.</span>
+            <span><strong>Art. 42:</strong> Disse em alto e bom som: <em>"Eu tô muito louco Juvenal!"</em> para a diretoria.</span>
           </div>
         </div>
       </div>

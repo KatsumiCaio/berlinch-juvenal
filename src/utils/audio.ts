@@ -322,13 +322,19 @@ class SoundEffectsManager {
   }
 
   // Speech synthesizer for Juvenal's iconic quote
-  speakQuote(text: string) {
+  speakQuote(text: string = 'Eu tô muito louco Juvenal!') {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'pt-BR';
-      utterance.pitch = 1.15;
-      utterance.rate = 1.05;
+      const voices = window.speechSynthesis.getVoices();
+      const ptVoice = voices.find((v) => v.lang === 'pt-BR' || v.lang.startsWith('pt'));
+      if (ptVoice) {
+        utterance.voice = ptVoice;
+      }
+      utterance.pitch = 1.05;
+      utterance.rate = 1.0;
+      utterance.volume = 1.0;
       window.speechSynthesis.speak(utterance);
     }
   }

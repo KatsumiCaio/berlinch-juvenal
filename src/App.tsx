@@ -60,8 +60,8 @@ export default function App() {
   // Hero sticker click
   const handleStickerClick = () => {
     soundEffects.playAirHorn();
-    soundEffects.speakQuote('Eu tô muito louco Juvena!');
-    showToast('📢 "Eu tô muito louco Juvena!"');
+    soundEffects.speakQuote('Eu tô muito louco Juvenal!');
+    showToast('📢 "Eu tô muito louco Juvenal!"');
     try {
       confetti({
         particleCount: 40,
@@ -237,7 +237,7 @@ export default function App() {
               <div className="flex items-center justify-center gap-2">
                 <span className="material-symbols-outlined text-[#4edea3] text-[20px]">format_quote</span>
                 <span className="font-['Bricolage_Grotesque'] text-[18px] sm:text-[20px] text-[#4edea3] tracking-tight font-extrabold italic">
-                  "Eu tô muito louco Juvena!"
+                  "Eu tô muito louco Juvenal!"
                 </span>
                 <span className="material-symbols-outlined text-[#4edea3] text-[20px] scale-x-[-1]">format_quote</span>
               </div>
