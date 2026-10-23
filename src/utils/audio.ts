@@ -1,6 +1,6 @@
 /**
  * Sound synthesis using the Web Audio API.
- * No external audio files needed; 100% resilient and offline-capable.
+ * High-performance, 100% resilient and offline-capable sound effects.
  */
 
 class SoundEffectsManager {
@@ -20,7 +20,7 @@ class SoundEffectsManager {
     return this.ctx;
   }
 
-  // Quick bubble pop for reactions
+  // Quick bubble pop for buttons/reactions
   playPop() {
     const ctx = this.initCtx();
     if (!ctx) return;
@@ -41,7 +41,32 @@ class SoundEffectsManager {
     osc.stop(ctx.currentTime + 0.09);
   }
 
-  // Beer glass clink sound
+  // Kiss sound effect (smooch)
+  playKissSound() {
+    const ctx = this.initCtx();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(800, now);
+    osc.frequency.exponentialRampToValueAtTime(1400, now + 0.08);
+    osc.frequency.exponentialRampToValueAtTime(600, now + 0.16);
+
+    gain.gain.setValueAtTime(0.001, now);
+    gain.gain.linearRampToValueAtTime(0.35, now + 0.04);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.2);
+  }
+
+  // Beer glass clink
   playBeerClink() {
     const ctx = this.initCtx();
     if (!ctx) return;
@@ -141,7 +166,35 @@ class SoundEffectsManager {
     osc2.stop(now + 0.3);
   }
 
-  // Victory Fanfare for awards & votes
+  // Corporate applause / cheering in training room
+  playApplause() {
+    const ctx = this.initCtx();
+    if (!ctx) return;
+    const bufferSize = ctx.sampleRate * 0.8;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.sin((i / bufferSize) * Math.PI);
+    }
+
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.value = 850;
+
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.25, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
+
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+
+    noise.start();
+  }
+
+  // Victory Fanfare
   playFanfare() {
     const ctx = this.initCtx();
     if (!ctx) return;
@@ -166,7 +219,7 @@ class SoundEffectsManager {
     });
   }
 
-  // Party Air Horn for "Modo 100% Louco"
+  // Party Air Horn
   playAirHorn() {
     const ctx = this.initCtx();
     if (!ctx) return;
@@ -194,13 +247,12 @@ class SoundEffectsManager {
     });
   }
 
-  // Romantic Sinergia Synthesizer (Careless Whisper style opening phrase)
+  // Romantic Saxophone theme for the kiss video
   playRomanticSinergia() {
     const ctx = this.initCtx();
     if (!ctx) return;
     this.stopBgm();
 
-    // Notes of Careless Whisper intro (D minor vibe)
     const notes = [
       { f: 587.33, d: 0.35 }, // D5
       { f: 523.25, d: 0.35 }, // C5
@@ -220,12 +272,11 @@ class SoundEffectsManager {
       osc.type = 'sawtooth';
       osc.frequency.setValueAtTime(note.f, t);
 
-      // Lowpass filter to soften into warm sax tone
       const filter = ctx.createBiquadFilter();
       filter.type = 'lowpass';
       filter.frequency.setValueAtTime(1400, t);
 
-      gain.gain.setValueAtTime(0.18, t);
+      gain.gain.setValueAtTime(0.2, t);
       gain.gain.exponentialRampToValueAtTime(0.01, t + note.d);
 
       osc.connect(filter);
@@ -247,7 +298,7 @@ class SoundEffectsManager {
     this.currentBgmOscs = [];
   }
 
-  // Dice roll / shuffle rattle
+  // Shuffle dice rattle
   playShuffle() {
     const ctx = this.initCtx();
     if (!ctx) return;
@@ -270,13 +321,13 @@ class SoundEffectsManager {
     }
   }
 
-  // Speech synthesizer for quote reading
+  // Speech synthesizer for Juvenal's iconic quote
   speakQuote(text: string) {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'pt-BR';
-      utterance.pitch = 1.1;
+      utterance.pitch = 1.15;
       utterance.rate = 1.05;
       window.speechSynthesis.speak(utterance);
     }

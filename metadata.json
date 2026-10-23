@@ -1,6 +1,6 @@
 {
-  "name": "Juvena Awards - Hall da Fama",
-  "description": "O portal oficial de honrarias, dossiês confidenciais e métricas ultra-confiáveis do mito e lenda corporativa Juvena.",
+  "name": "Juvenal Awards - Hall da Fama",
+  "description": "O portal oficial do mito Juvenal: o sticker sagrado, o vídeo do beijo da sinergia, soundboard e métricas de performance.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
